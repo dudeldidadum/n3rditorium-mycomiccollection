@@ -7,12 +7,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
 @JsonInclude (JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder ({"country", "saleability", "isEbook"})
-public class SaleInfo {
+public class SaleInfo implements Serializable {
 
    @JsonProperty ("country")
    private String country;

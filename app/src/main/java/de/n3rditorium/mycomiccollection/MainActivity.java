@@ -7,7 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -19,6 +18,8 @@ import de.n3rditorium.mycomiccollection.search.SearchResultPresenter;
 
 public class MainActivity extends ActionBarActivity {
 
+   private SearchResultPresenter presenter;
+
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
@@ -27,6 +28,15 @@ public class MainActivity extends ActionBarActivity {
       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
       setSupportActionBar(toolbar);
       initFloatAction();
+
+      presenter = new SearchResultPresenter(this);
+      presenter.onCreate(savedInstanceState);
+   }
+
+   @Override
+   public void onSaveInstanceState(Bundle outState) {
+      super.onSaveInstanceState(outState);
+      presenter.onSavedInstanceState(outState);
    }
 
    @Override
@@ -52,18 +62,16 @@ public class MainActivity extends ActionBarActivity {
    }
 
    private void initFloatAction() {
-      View btnScan = findViewById(R.id.btn_scan);
+      View btnScan = findViewById(R.id.btn_add);
       btnScan.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View v) {
-            View searchResults = findViewById(R.id.search_results);
-            if(searchResults != null) {
-               ViewGroup container = (ViewGroup) findViewById(R.id.container);
-               container.removeView(searchResults);
-            }
-            IntentIntegrator.initiateScan(MainActivity.this);
-         }
-      });
+                                    @Override
+                                    public void onClick(View v) {
+                                       presenter.clearResults();
+                                       IntentIntegrator.initiateScan(MainActivity.this);
+                                    }
+                                 }
+
+      );
    }
 
    @Override
@@ -87,10 +95,7 @@ public class MainActivity extends ActionBarActivity {
 
          @Override
          public void onSuccess(SearchResults results) {
-            Toast.makeText(MainActivity.this, "onSuccess", Toast.LENGTH_SHORT).show();
-
-            SearchResultPresenter presenter = new SearchResultPresenter(MainActivity.this);
-            presenter.populatioResultList(results, (ViewGroup) findViewById(R.id.container));
+            presenter.handleSearchResults(results);
          }
 
          @Override

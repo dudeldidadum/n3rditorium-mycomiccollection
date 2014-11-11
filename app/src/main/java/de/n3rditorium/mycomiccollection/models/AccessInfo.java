@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +15,7 @@ import java.util.Map;
 @JsonPropertyOrder (
       {"country", "viewability", "embeddable", "publicDomain", "textToSpeechPermission", "epub",
             "pdf", "webReaderLink", "accessViewStatus", "quoteSharingAllowed"})
-public class AccessInfo {
+public class AccessInfo implements Serializable {
 
    @JsonProperty ("country")
    private String country;

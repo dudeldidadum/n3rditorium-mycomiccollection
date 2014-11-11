@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,12 +18,14 @@ import java.util.Map;
       {"title", "authors", "publishedDate", "industryIdentifiers", "readingModes", "pageCount",
             "printType", "contentVersion", "imageLinks", "language", "previewLink", "infoLink",
             "canonicalVolumeLink"})
-public class VolumeInfo {
+public class VolumeInfo implements Serializable {
 
    @JsonProperty ("title")
    private String title;
    @JsonProperty ("subtitle")
    private String subtitle;
+   @JsonProperty ("description")
+   private String description;
    @JsonProperty ("publisher")
    private String publisher;
    @JsonProperty ("authors")
@@ -35,6 +38,8 @@ public class VolumeInfo {
    private ReadingModes readingModes;
    @JsonProperty ("pageCount")
    private Integer pageCount;
+   @JsonProperty ("averageRating")
+   private Float averageRating;
    @JsonProperty ("printType")
    private String printType;
    @JsonProperty ("contentVersion")
@@ -300,5 +305,25 @@ public class VolumeInfo {
    @JsonAnySetter
    public void setAdditionalProperty(String name, Object value) {
       this.additionalProperties.put(name, value);
+   }
+
+   @JsonProperty ("description")
+   public String getDescription() {
+      return description;
+   }
+
+   @JsonProperty ("description")
+   public void setDescription(String description) {
+      this.description = description;
+   }
+
+   @JsonProperty ("averageRating")
+   public Float getAverageRating() {
+      return averageRating;
+   }
+
+   @JsonProperty ("averageRating")
+   public void setAverageRating(Float averageRating) {
+      this.averageRating = averageRating;
    }
 }
