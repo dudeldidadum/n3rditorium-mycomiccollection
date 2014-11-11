@@ -5,10 +5,12 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="MainTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-    <!-- colorPrimary is used for the default action bar background -->
-    <item name="colorPrimary">@color/blue</item>
-    <item name="colorPrimaryDark">@color/blue_dark</item>
+    <style name="MainTheme" parent="Theme.AppCompat">
+        <!-- colorPrimary is used for the default action bar background -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryDark">@color/blue_dark</item>
     </style>
 
 </resources>
