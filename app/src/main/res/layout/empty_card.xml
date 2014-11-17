@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:minHeight="128dp"
+                                    android:layout_marginTop="96dp"
+                                    android:layout_marginLeft="32dp"
+                                    android:layout_marginRight="32dp"
+                                    cardview:cardElevation="4dp"
+                                    cardview:cardCornerRadius="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#656565"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_action_search"
+            android:gravity="center"
+            android:layout_marginBottom="6dp"
+            android:text="Keine Einträge"
+            />
+
+        <TextView
+            android:id="@+id/txt_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#656565"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="Um Einträge hinzuzufügen... bla bla bla "
+            />
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>
+

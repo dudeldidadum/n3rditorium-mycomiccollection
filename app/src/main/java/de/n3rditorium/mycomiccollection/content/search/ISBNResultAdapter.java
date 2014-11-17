@@ -1,4 +1,4 @@
-package de.n3rditorium.mycomiccollection.search;
+package de.n3rditorium.mycomiccollection.content.search;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -26,7 +26,7 @@ import de.n3rditorium.mycomiccollection.models.VolumeInfo;
 /**
  * Created by Kyp on 11.11.14.
  */
-public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.ViewHolder> {
+public class ISBNResultAdapter extends RecyclerView.Adapter<ISBNResultAdapter.ViewHolder> {
 
    public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -57,7 +57,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
 
    private List<Item> searchResults;
 
-   public SearchResultAdapter() {
+   public ISBNResultAdapter() {
       // nothing to do here
       searchResults = new ArrayList<Item>();
    }

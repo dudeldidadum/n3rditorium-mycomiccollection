@@ -1,4 +1,4 @@
-package de.n3rditorium.mycomiccollection.search;
+package de.n3rditorium.mycomiccollection.content.search;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -13,14 +13,14 @@ import de.n3rditorium.mycomiccollection.models.SearchResults;
 /**
  * Created by Kyp on 11.11.14.
  */
-public class SearchResultPresenter extends ContentPresenter {
+public class ISBNResultPresenter extends ContentPresenter {
 
    private static final String EXTRA_RESULTS = "SearchResultPresenter.searchResults";
 
    private SearchResults results;
-   private SearchResultAdapter adapter;
+   private ISBNResultAdapter adapter;
 
-   public SearchResultPresenter(ActionBarActivity activity) {
+   public ISBNResultPresenter(ActionBarActivity activity) {
       super(activity);
    }
 
@@ -37,7 +37,7 @@ public class SearchResultPresenter extends ContentPresenter {
    private void initRecyclerView() {
       RecyclerView recyclerView = (RecyclerView) findViewById(R.id.search_results);
       recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-      adapter = new SearchResultAdapter();
+      adapter = new ISBNResultAdapter();
       if (results != null) {
          adapter.addItems(results.getItems());
       }
@@ -49,15 +49,16 @@ public class SearchResultPresenter extends ContentPresenter {
       outState.putSerializable(EXTRA_RESULTS, results);
    }
 
-   public void handleSearchResults(SearchResults results) {
-      this.results = results;
+   @Override
+   public void addContent(Content content) {
+      this.results = (SearchResults) content;
       int i = 0;
       for (Item item : results.getItems()) {
          adapter.addItem(i++, item);
       }
    }
 
-   public void clearResults() {
+   public void clearContent() {
       results = null;
       adapter.clear();
    }

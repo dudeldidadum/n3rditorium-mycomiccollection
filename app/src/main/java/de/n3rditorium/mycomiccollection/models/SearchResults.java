@@ -13,9 +13,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import de.n3rditorium.mycomiccollection.core.ContentPresenter;
+
 @JsonInclude (JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder ({"kind", "totalItems", "items"})
-public class SearchResults implements Serializable {
+public class SearchResults implements ContentPresenter.Content, Serializable {
 
    @JsonProperty ("kind")
    private String kind;

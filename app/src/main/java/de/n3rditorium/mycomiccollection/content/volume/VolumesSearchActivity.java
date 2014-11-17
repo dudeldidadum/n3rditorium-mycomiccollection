@@ -1,49 +1,70 @@
-package de.n3rditorium.mycomiccollection;
+package de.n3rditorium.mycomiccollection.content.volume;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import de.n3rditorium.mycomiccollection.R;
+import de.n3rditorium.mycomiccollection.content.search.ISBNResultPresenter;
+import de.n3rditorium.mycomiccollection.core.ContentActivity;
 import de.n3rditorium.mycomiccollection.models.SearchResults;
+import de.n3rditorium.mycomiccollection.models.comicvine.Response;
 import de.n3rditorium.mycomiccollection.remote.ISBNSearch;
-import de.n3rditorium.mycomiccollection.search.SearchResultPresenter;
+import de.n3rditorium.mycomiccollection.remote.comicvine.ComicVine;
 
-public class MainActivity extends ActionBarActivity {
+public class VolumesSearchActivity extends ContentActivity {
 
-   private SearchResultPresenter presenter;
+   /**
+    * Used to store the last screen title. For use in {@link #restoreActionBar()}.
+    */
+   private CharSequence mTitle;
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
-      setContentView(R.layout.activity_main);
+      setContentView(R.layout.act_home);
 
-      Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-      setSupportActionBar(toolbar);
-      initFloatAction();
-
-      presenter = new SearchResultPresenter(this);
-      presenter.onCreate(savedInstanceState);
+      if (presenter != null && presenter.usesRestoredData()) {
+         return;
+      }
+      searchVolumes("Superior Spider-Man");
    }
 
-   @Override
-   public void onSaveInstanceState(Bundle outState) {
-      super.onSaveInstanceState(outState);
-      presenter.onSavedInstanceState(outState);
+   protected void searchVolumes(String query) {
+      showLoadingView();
+      ComicVine.getInstance(this).searchVolume(query, new ComicVine.Callback() {
+         @Override
+         public void onSuccess(Response response) {
+            hideLoadingView();
+            presenter = new VolumesResultPresenter(VolumesSearchActivity.this);
+            presenter.onCreate(null);
+            presenter.addContent(response);
+         }
+
+         @Override
+         public void onFailure() {
+            hideLoadingView();
+            // TODO show error
+         }
+      });
    }
 
    @Override
    public boolean onCreateOptionsMenu(Menu menu) {
-      // Inflate the menu; this adds items to the action bar if it is present.
-      getMenuInflater().inflate(R.menu.menu_main, menu);
-      return true;
+      if (!mNavigationDrawerFragment.isDrawerOpen()) {
+         // Only show items in the action bar relevant to this screen
+         // if the drawer is not showing. Otherwise, let the drawer
+         // decide what to show in the action bar.
+         getMenuInflater().inflate(R.menu.home, menu);
+         restoreActionBar();
+         return true;
+      }
+      return super.onCreateOptionsMenu(menu);
    }
 
    @Override
@@ -59,19 +80,6 @@ public class MainActivity extends ActionBarActivity {
       }
 
       return super.onOptionsItemSelected(item);
-   }
-
-   private void initFloatAction() {
-      View btnScan = findViewById(R.id.btn_add);
-      btnScan.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                       presenter.clearResults();
-                                       IntentIntegrator.initiateScan(MainActivity.this);
-                                    }
-                                 }
-
-      );
    }
 
    @Override
@@ -95,12 +103,13 @@ public class MainActivity extends ActionBarActivity {
 
          @Override
          public void onSuccess(SearchResults results) {
-            presenter.handleSearchResults(results);
+            replacePresenter(new ISBNResultPresenter(VolumesSearchActivity.this));
+            presenter.addContent(results);
          }
 
          @Override
          public void onFailure() {
-            Toast.makeText(MainActivity.this, "onFailure", Toast.LENGTH_SHORT).show();
+            Toast.makeText(VolumesSearchActivity.this, "onFailure", Toast.LENGTH_SHORT).show();
          }
       });
    }

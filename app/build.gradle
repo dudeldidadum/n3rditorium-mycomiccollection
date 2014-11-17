@@ -4,6 +4,11 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.1"
 
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+
     defaultConfig {
         applicationId "de.n3rditorium.mycomiccollection"
         minSdkVersion 16
@@ -39,9 +44,11 @@ dependencies {
     compile 'com.squareup.retrofit:retrofit:1.7.1'
     compile 'com.google.zxing:core:3.0.0'
     compile 'com.embarkmobile:zxing-android-minimal:1.2.1@aar'
-    compile 'com.fasterxml.jackson.core:jackson-annotations:2.4.0'
     compile 'com.squareup.okhttp:okhttp:2.0.0'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
     compile 'com.squareup.okio:okio:1.0.0'
     compile 'com.getbase:floatingactionbutton:1.1.0'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.0'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.4.0'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.4.0'
 }

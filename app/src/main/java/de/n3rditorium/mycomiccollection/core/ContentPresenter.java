@@ -12,6 +12,11 @@ import de.n3rditorium.mycomiccollection.R;
 
 public abstract class ContentPresenter {
 
+   public static interface Content {
+      // empty interface to
+   }
+
+   protected boolean restoredData = false;
    private ActionBarActivity activity;
    protected ViewGroup contentContainer;
    protected View contentView;
@@ -53,4 +58,26 @@ public abstract class ContentPresenter {
    protected Context getContext() {
       return activity.getBaseContext();
    }
+
+   public void removeContent() {
+      if (contentContainer == null) {
+         return;
+      }
+      int childCount = contentContainer.getChildCount();
+      for (int i = 0; i < childCount; ++i) {
+         View child = contentContainer.getChildAt(i);
+         if (child.getId() == R.id.toolbar) {
+            continue;
+         }
+         contentContainer.removeView(child);
+      }
+   }
+
+   public boolean usesRestoredData() {
+      return restoredData;
+   }
+
+   public abstract void clearContent();
+
+   public abstract void addContent(Content content);
 }
