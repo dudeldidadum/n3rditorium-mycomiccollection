@@ -24,7 +24,7 @@
             android:label="Volumes"/>
         <activity
             android:name=".content.volume.VolumeDetailActivity"
-            android:label=""/>  
+            android:label=""/>
     </application>
 
 </manifest>

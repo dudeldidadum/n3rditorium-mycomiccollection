@@ -1,11 +1,11 @@
 package de.n3rditorium.mycomiccollection.models.comicvine;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
+import java.util.List;
 
 @JsonInclude (JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties (ignoreUnknown = true)
@@ -43,6 +43,16 @@ public class Result implements Serializable {
    private String startYear;
    @JsonProperty ("resource_type")
    private String resourceType;
+//   @JsonProperty ("issues")
+//   private List<Issue> issues;
+
+//   public List<Issue> getIssues() {
+//      return issues;
+//   }
+//
+//   public void setIssues(List<Issue> issues) {
+//      this.issues = issues;
+//   }
 
    /**
     * @return The aliases

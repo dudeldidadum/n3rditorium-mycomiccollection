@@ -38,10 +38,7 @@ public class VolumesResultPresenter extends ContentPresenter {
    private void initRecyclerView() {
       RecyclerView recyclerView = (RecyclerView) findViewById(R.id.search_results);
       recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-      adapter = new VolumesResultAdapter(response);
-      //      if (response != null) {
-      //         adapter.addItems(response.getItems());
-      //      }
+      adapter = new VolumesResultAdapter(getActivity(), response);
       recyclerView.setAdapter(adapter);
    }
 

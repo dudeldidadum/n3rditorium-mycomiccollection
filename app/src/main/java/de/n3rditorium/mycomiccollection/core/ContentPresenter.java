@@ -73,6 +73,10 @@ public abstract class ContentPresenter {
       }
    }
 
+   public ActionBarActivity getActivity() {
+      return activity;
+   }
+
    public boolean usesRestoredData() {
       return restoredData;
    }
