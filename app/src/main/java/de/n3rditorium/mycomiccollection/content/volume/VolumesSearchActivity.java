@@ -32,7 +32,7 @@ public class VolumesSearchActivity extends ContentActivity {
       if (presenter != null && presenter.usesRestoredData()) {
          return;
       }
-      searchVolumes("Superior Spider-Man");
+      searchVolumes("Amazing Spider-Man");
    }
 
    protected void searchVolumes(String query) {

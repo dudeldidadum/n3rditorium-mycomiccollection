@@ -23,9 +23,11 @@ public class ComicVine {
 
    private static interface Resources {
       static final String VOLUMES = "volumes";
+      static final String VOLUME = "volume";
    }
 
    private static interface FieldList {
+
       static final String VOLUMES =
             "api_detail_url,start_year,count_of_issues,id,image,name,publisher";
       static final String VOLUME_DETAIL =
@@ -78,8 +80,8 @@ public class ComicVine {
             }
             try {
                return comicService
-                     .searchForVolume(Properties.API_KEY, Properties.JSON, Resources.VOLUMES, 20,
-                           query, FieldList.VOLUMES);
+                     .searchForVolume(Properties.API_KEY, Properties.JSON, Resources.VOLUME, query,
+                           25, FieldList.VOLUMES);
             } catch (RetrofitError e) {
                Log.e(getClass().getSimpleName(), e.getMessage(), e);
             }

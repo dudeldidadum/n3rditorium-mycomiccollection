@@ -41,6 +41,7 @@ public class VolumesResultAdapter extends RecyclerView.Adapter<VolumesResultAdap
    private Activity activity;
 
    public VolumesResultAdapter(Activity activity, Response response) {
+      this.activity = activity;
       if (response != null) {
          this.results = response.getResults();
       }

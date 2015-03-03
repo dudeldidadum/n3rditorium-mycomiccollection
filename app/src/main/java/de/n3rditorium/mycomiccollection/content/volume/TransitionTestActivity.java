@@ -78,18 +78,6 @@ public class TransitionTestActivity extends ContentActivity implements ComicCons
       Picasso.with(this).load(item.getImageLinks().getSmallUrl()).into(cover);
 
       setTitle(item.getName());
-      //      ComicVine.getInstance(this).laodVolumeDetails(item.getId(), new ComicVine.Callback() {
-      //         @Override
-      //         public void onSuccess(Response response) {
-      //            Toast.makeText(VolumeDetailActivity.this, "wuhuuuu!!!",
-      // Toast.LENGTH_SHORT).show();
-      //         }
-      //
-      //         @Override
-      //         public void onFailure() {
-      //            Toast.makeText(VolumeDetailActivity.this, "FOO", Toast.LENGTH_SHORT).show();
-      //         }
-      //      });
    }
 
    @Override

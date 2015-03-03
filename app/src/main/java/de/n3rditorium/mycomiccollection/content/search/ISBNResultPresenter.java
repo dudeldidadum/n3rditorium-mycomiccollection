@@ -31,6 +31,7 @@ public class ISBNResultPresenter extends ContentPresenter {
       if (savedInstanceState != null) {
          results = (SearchResults) savedInstanceState.getSerializable(EXTRA_RESULTS);
       }
+
       initRecyclerView();
    }
 

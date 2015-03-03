@@ -12,8 +12,8 @@ public interface ComicService {
 
    @GET ("/search/")
    Response searchForVolume(@Query ("api_key") String apiKey, @Query ("format") String format,
-         @Query ("resources") String resources, @Query ("limit") Integer limit,
-         @Query ("query") String query, @Query ("field_list") String fields);
+         @Query ("resources") String resources, @Query ("query") String query,
+         @Query ("limit") Integer limit, @Query ("field_list") String fields);
 
    @GET ("/volume/4050-{volume_id}/")
    Response loadVolumeDetail(@Path ("volume_id") Integer volumeId, @Query ("api_key") String apiKey,
